@@ -15,7 +15,7 @@ pytest
 
 ## Continuous Integration
 
-All tests run automatically on GitHub Actions (Python 3.9 and 3.10, Ubuntu).
+All tests run automatically on GitHub Actions (Python 3.9 and 3.11, Ubuntu).
 
 ## Author
 
