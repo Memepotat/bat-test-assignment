@@ -1,15 +1,15 @@
 # test_bat_functions.py
 
 import pytest
-from bat_functions import calculate_bat_power, signal_strength, get_bat_vehicle, fetch_joker_info
+import bat_functions
 
 # Exercise 1: Basic Tests and Parametrization
 
 def test_calculate_bat_power_basic():
-    assert calculate_bat_power(1) == 42
-    assert calculate_bat_power(0) == 0
-    assert calculate_bat_power(5) == 210
-    assert calculate_bat_power(-1) == -42
+    assert bat_functions.calculate_bat_power(1) == 42
+    assert bat_functions.calculate_bat_power(0) == 0
+    assert bat_functions.calculate_bat_power(5) == 210
+    assert bat_functions.calculate_bat_power(-1) == -42
 
 @pytest.mark.parametrize(
     "distance,expected_strength",
@@ -22,7 +22,7 @@ def test_calculate_bat_power_basic():
     ]
 )
 def test_signal_strength_parametrized(distance, expected_strength):
-    assert signal_strength(distance) == expected_strength
+    assert bat_functions.signal_strength(distance) == expected_strength
 
 # Exercise 2: Using Fixtures
 
@@ -36,11 +36,11 @@ def bat_vehicles():
 
 def test_get_bat_vehicle_known(bat_vehicles):
     for name, specs in bat_vehicles.items():
-        assert get_bat_vehicle(name) == specs
+        assert bat_functions.get_bat_vehicle(name) == specs
 
 def test_get_bat_vehicle_unknown():
     with pytest.raises(ValueError) as excinfo:
-        get_bat_vehicle("Batboat")
+        bat_functions.get_bat_vehicle("Batboat")
     assert "Unknown vehicle" in str(excinfo.value)
 
 # Exercise 3: Mocking External Dependencies
@@ -51,5 +51,5 @@ def test_fetch_joker_info_mock(monkeypatch):
     def mock_fetch():
         return mock_data
 
-    monkeypatch.setattr("bat_functions.fetch_joker_info", mock_fetch)
-    assert fetch_joker_info() == mock_data
+    monkeypatch.setattr(bat_functions, "fetch_joker_info", mock_fetch)
+    assert bat_functions.fetch_joker_info() == mock_data
