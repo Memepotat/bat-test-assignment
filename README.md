@@ -10,8 +10,8 @@ This repository contains robust pytest-based tests for the Bat-Tech software, en
 
 ## How to Run Tests
 
-pip install pytest
-pytest
+1. pip install pytest
+2. pytest
 
 ## Continuous Integration
 
